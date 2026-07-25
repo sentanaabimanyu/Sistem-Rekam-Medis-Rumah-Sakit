@@ -1,4 +1,6 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil file header
+include_once('../_header.php'); ?>
 
     <div class="box">
         <h1>Poliklinik</h1>
@@ -26,8 +28,11 @@
                 </thead>
                 <tbody>
                 <?php
+                // Nomor urut data
                 $no =1;
+                // Mengambil seluruh data poliklinik dari database.
                 $sql_poli = mysqli_query($con, "SELECT * FROM tb_poliklinik ORDER BY nama_poli ASC") or die (mysqli_error($con));
+                  // Jika data ditemukan, tampilkan seluruh data.
                 if(mysqli_num_rows($sql_poli) > 0) { 
                     while($data = mysqli_fetch_array($sql_poli)) { ?>
                         <tr>
@@ -41,6 +46,7 @@
                     <?php
                     }
                 } else {
+                    // Jika tidak ada data
                     echo "<tr><td colspan=\"4\" align=\"center\">Data tidak ditemukan</td></tr>";
                 }
                 ?>
@@ -56,6 +62,7 @@
     </div>
     <script>
     $(document).ready(function() {
+         // Checkbox "Pilih Semua" Jika dicentang maka seluruh checkboxpada tabel akan ikut dicentang.
         $('#select_all').on('click', function() {
             if(this.checked) {
                 $('.check').each(function() {
@@ -67,7 +74,7 @@
                 })
             }
         });
-
+        // Mengecek apakah semua checkbox sudah dipilih atau belum
         $('.check').on('click', function() {
             if($('.check:checked').length == $('.check').length) {
                 $('#select_all').prop('checked', true)
@@ -76,11 +83,16 @@
             }
         })
     })
-
+    // Fungsi Edit 
+    // mengirim data yang dipilih ke edit.php
     function edit() {
         document.proses.action = 'edit.php';
         document.proses.submit();
     }
+    // Fungsi Hapus
+    // Menampilkan konfirmasi terlebih dahulu.
+    // Jika pengguna memilih OK,
+    // data dikirim ke del.php.
     function hapus() {
         var conf = confirm('Yakin akan menghapus data?');
         if(conf) {
@@ -90,4 +102,6 @@
     }
     </script>
 
-<?php include_once('../_footer.php'); ?>
+<?php 
+// Memanggil file footer
+include_once('../_footer.php'); ?>

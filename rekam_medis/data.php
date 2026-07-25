@@ -1,4 +1,7 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil file header yang berisi tampilan awal halaman, koneksi database,
+// session login, serta library yang digunakan.
+include_once('../_header.php'); ?>
 
     <div class="box">
         <h1>Rekam Medis</h1>
@@ -26,12 +29,17 @@
                 </thead>
                 <tbody>
                     <?php
+                    // Nomor urut tabel
                     $no = 1;
+                    // Query untuk mengambil data rekam medis beserta data pasien,
+                    // dokter, dan poliklinik menggunakan INNER JOIN
                     $query = "SELECT * FROM tb_rekammedis
                             INNER JOIN tb_pasien ON tb_rekammedis.id_pasien = tb_pasien.id_pasien
                             INNER JOIN tb_dokter ON tb_rekammedis.id_dokter = tb_dokter.id_dokter
                             INNER JOIN tb_poliklinik ON tb_rekammedis.id_poli = tb_poliklinik.id_poli";
+                    // Menjalankan query
                     $sql_rm = mysqli_query($con, $query) or die (mysqli_error($con));
+                    // Menampilkan seluruh data rekam medis
                     while ($data = mysqli_fetch_array($sql_rm)) { ?>
                         <tr>
                             <td><?=$no++?>.</td>
@@ -43,7 +51,10 @@
                             <td><?=$data['nama_poli']?></td>
                             <td>
                                 <?php
+                                // Mengambil seluruh obat yang berhubungan
+                                // dengan rekam medis ini
                                 $sql_obat = mysqli_query($con, "SELECT * FROM tb_rm_obat JOIN tb_obat ON tb_rm_obat.id_obat = tb_obat.id_obat WHERE id_rm = '$data[id_rm]'") or die (mysqli_error($con));
+                                // Menampilkan nama obat satu per satu
                                 while ($data_obat = mysqli_fetch_array($sql_obat)) {
                                     echo $data_obat['nama_obat']."<br>";
                                 } ?>
@@ -60,8 +71,10 @@
             </table>
         </div>
         <script type="text/javascript">
+        // Menjalankan DataTables setelah halaman selesai dimuat
         $(document).ready(function() {
             $('#rekammedis').DataTable({
+                 // Mengatur kolom aksi agar tidak bisa diurutkan dan dicari
                 columnDefs: [
                     {
                         "searchable": false,
@@ -74,4 +87,6 @@
         </script>
     </div>
 
-<?php include_once('../_footer.php'); ?>
+<?php 
+// Memanggil file footer
+include_once('../_footer.php'); ?>

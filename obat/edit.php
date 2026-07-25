@@ -1,4 +1,6 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil file header
+include_once('../_header.php'); ?>
 
     <div class="box">
         <h1>Obat</h1>
@@ -11,8 +13,11 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 <?php
+                // Mengambil ID obat dari URL
                 $id = @$_GET['id'];
+                // Mengambil data obat berdasarkan ID
                 $sql_obat = mysqli_query($con, "SELECT * FROM tb_obat WHERE id_obat = '$id'") or die (mysqli_error($con));
+                 // Mengubah hasil query menjadi array,agar data dapat ditampilkan ke dalam form.
                 $data = mysqli_fetch_array($sql_obat);
                 ?>
                 <form action="proses.php" method="post">
@@ -33,4 +38,6 @@
         </div>
     </div>
 
-    <?php include_once('../_footer.php'); ?>
+    <?php 
+    // Memanggil file footer
+    include_once('../_footer.php'); ?>

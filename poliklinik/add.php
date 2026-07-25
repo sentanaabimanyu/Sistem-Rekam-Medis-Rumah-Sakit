@@ -1,4 +1,6 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil file header
+include_once('../_header.php'); ?>
 
     <div class="box">
         <h1>Poliklinik</h1>
@@ -20,6 +22,7 @@
                             <th>Gedung</th>
                         </tr>
                         <?php
+                         // Perulangan untuk membuat form input,sebanyak jumlah yang dipilih pengguna.
                         for ($i=1; $i <=$_POST['count_add'] ; $i++) { ?>
                             <tr>
                                 <td><?=$i ?></td>
@@ -42,4 +45,6 @@
         </div>
     </div>
 
-<?php include_once('../_footer.php'); ?>
+<?php 
+// Memanggil file footer
+include_once('../_footer.php'); ?>

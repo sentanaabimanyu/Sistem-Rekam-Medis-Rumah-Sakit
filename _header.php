@@ -1,7 +1,10 @@
 <?php
+// Load koneksi database
 require_once "_config/config.php";
+// Load autoloader Composer
 require "_assets/libs/vendor/autoload.php";
 
+// Cek session login, jika belum login redirect ke halaman login
 if(!isset($_SESSION['user'])) {
     echo "<script>window.location='".base_url('auth/login.php')."';</script>";
 } ?>

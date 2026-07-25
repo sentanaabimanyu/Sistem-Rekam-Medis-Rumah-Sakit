@@ -1,4 +1,6 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil file header
+include_once('../_header.php'); ?>
 
     <div class="box">
         <h1>Dokter</h1>
@@ -30,8 +32,10 @@
                 <tbody>
                 <?php
                 $no =1;
-                $sql_poli = mysqli_query($con, "SELECT * FROM tb_dokter") or die (mysqli_error($con));
-                while($data = mysqli_fetch_array($sql_poli)) { ?>
+                // Mengambil seluruh data dokter
+                // dari tabel tb_dokter
+                $sql_dokter = mysqli_query($con, "SELECT * FROM tb_dokter") or die (mysqli_error($con));
+                while($data = mysqli_fetch_array($sql_dokter)) { ?>
                     <tr>
                         <td align="center">
                             <input type="checkbox" name="checked[]" class="check" value="<?=$data['id_dokter']?>">

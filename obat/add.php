@@ -1,4 +1,6 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil file header
+include_once('../_header.php'); ?>
 
     <div class="box">
         <h1>Obat</h1>
@@ -13,7 +15,7 @@
                 <form action="proses.php" method="post">
                     <div class="form-group">
                         <label for="nama">Nama Obat</label>
-                        <input type="text" name="nama" id="nama" class="form-control" require autofocus>
+                        <input type="text" name="nama" id="nama" class="form-control" required autofocus>
                     </div>
                      <div class="form-group">
                         <label for="ket">Keterangan</label>
@@ -27,4 +29,6 @@
         </div>
     </div>
 
-    <?php include_once('../_footer.php'); ?>
+    <?php
+    // Memanggil file footer
+    include_once('../_footer.php'); ?>

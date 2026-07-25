@@ -1,4 +1,6 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil file header
+include_once('../_header.php'); ?>
 
     <div class="box">
         <h1>Dokter</h1>
@@ -11,8 +13,11 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 <?php
+                // Mengambil ID dokter dari URL
                 $id = @$_GET['id'];
+                // Mengambil data dokter berdasarkan ID
                 $sql_dokter = mysqli_query($con, "SELECT * FROM tb_dokter WHERE id_dokter = '$id'") or die (mysqli_error($con));
+                // Mengubah hasil query menjadi array, lalu ditampilkan ke dalam form
                 $data = mysqli_fetch_array($sql_dokter);
                 ?>
                 <form action="proses.php" method="post">

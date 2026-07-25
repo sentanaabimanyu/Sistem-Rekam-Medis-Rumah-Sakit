@@ -1,4 +1,6 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil file header
+include_once('../_header.php'); ?>
 
     <div class="box">
         <h1>Dokter</h1>
@@ -35,4 +37,6 @@
         </div>
     </div>
 
-    <?php include_once('../_footer.php'); ?>
+    <?php 
+    // Memanggil file footer
+    include_once('../_footer.php'); ?>

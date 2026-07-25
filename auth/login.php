@@ -1,6 +1,10 @@
 <?php
+// Memanggil file konfigurasi utama
 require_once "../_config/config.php";
+
+// Mengecek apakah pengguna sudah login
 if(isset($_SESSION['user'])) {
+    // Redirect ke halaman utama
     echo "<script>window.location='".base_url()."';</script>";
 } else {
 ?>
@@ -145,14 +149,22 @@ if(isset($_SESSION['user'])) {
                 </div>
 
                 <?php
+                //Proses Login,proses akan berjalan ketika tombol masuk sistem diklik
                 if(isset($_POST['login'])) {
+                    // Mengambil username dari form
                     $user = trim(mysqli_real_escape_string($con, $_POST['user']));
+                    // Mengambil password lalu mengenkripsi dengan SHA1
                     $pass = sha1(trim(mysqli_real_escape_string($con, $_POST['pass'])));
+                    // Mengecek username dan password pada database
                     $sql_login = mysqli_query($con, "SELECT * FROM tb_user WHERE username = '$user' AND password = '$pass'") or die (mysqli_error($con));
+                    // Jika data ditemukan
                     if(mysqli_num_rows($sql_login) > 0) {
+                        // Simpan username ke session
                         $_SESSION['user'] = $user;
+                        // Pindah ke halaman utama
                         echo "<script>window.location='".base_url()."';</script>";
                     } else { ?>
+                    // Menampilkan pesan jika login gagal
                         <div class="alert alert-danger alert-dismissable" role="alert" style="border-radius: 6px; margin-bottom: 20px;">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

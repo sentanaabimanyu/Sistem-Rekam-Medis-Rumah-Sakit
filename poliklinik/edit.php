@@ -1,8 +1,13 @@
 <?php
+// Mengambil data checkbox yang dipilih,dari halaman data.php
 $chk = $_POST['checked'];
+
+// Jika tidak ada data yang dipilih,
+// tampilkan pesan peringatan dan kembali ke halaman data.
 if(!isset($chk)) {
     echo "<script>alert('Tidak ada daya yang dipilih!'); window.location='data.php';</script>";
 } else { 
+    // Memanggil file header
     include_once('../_header.php'); ?>
     <div class="box">
         <h1>Poliklinik</h1>
@@ -23,9 +28,13 @@ if(!isset($chk)) {
                             <th>Gedung</th>
                         </tr>
                         <?php
+                        // Nomor urut tabel
                         $no = 1;
+                         // Melakukan perulangan terhadap setiap,ID poliklinik yang dipilih.
                         foreach($chk as $id) {
+                             // Mengambil data poliklinik berdasarkan ID
                             $sql_poli = mysqli_query($con, "SELECT * FROM tb_poliklinik WHERE  id_poli = '$id'") or die (mysqli_error());
+                            // Menampilkan data ke dalam form
                             while($data = mysqli_fetch_array($sql_poli)) { ?>
                             <tr>
                                 <td><?=$no++?></td>
@@ -50,5 +59,6 @@ if(!isset($chk)) {
         </div>
     </div>
     <?php
+    // Memanggil file footer
     include_once('../_footer.php'); 
 } ?>

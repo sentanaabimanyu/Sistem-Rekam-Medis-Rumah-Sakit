@@ -1,7 +1,9 @@
-<?php include_once('../_header.php'); ?>
+<?php 
+// Memanggil Header Website
+include_once('../_header.php'); ?>
 
 <?php
-// Sapaan otomatis berdasarkan jam saat ini
+// Menampilkan sapaan berdasarkan waktu
 $jam = (int) date('H');
 if ($jam >= 4 && $jam < 11) {
     $sapaan = 'Selamat Pagi';
@@ -13,7 +15,7 @@ if ($jam >= 4 && $jam < 11) {
     $sapaan = 'Selamat Malam';
 }
 
-// Tanggal lengkap berbahasa Indonesia (manual, tidak bergantung setlocale)
+// Membuat format tanggal
 $nama_hari  = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 $nama_bulan = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 $tanggal_hari_ini = $nama_hari[(int) date('w')] . ', ' . (int) date('j') . ' ' . $nama_bulan[(int) date('n')] . ' ' . date('Y');
@@ -248,4 +250,6 @@ $tanggal_hari_ini = $nama_hari[(int) date('w')] . ', ' . (int) date('j') . ' ' .
     </div>
 </div>
 
-<?php include_once('../_footer.php'); ?>
+<?php 
+//Memanggil Footer Website
+include_once('../_footer.php'); ?>
